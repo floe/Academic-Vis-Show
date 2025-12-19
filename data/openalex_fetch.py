@@ -22,9 +22,9 @@ Mobility = []
 for aff in author["affiliations"]:
     position = {
         "Position": "Master/PhD/PostDoc/AsstProf/AssocProf/FullProf", # needs to be manually filled in
-        "StartDate": aff["years"][-1],
-        "EndDate": aff["years"][0],
-        "Location": "TBD", # can be queried from institution["id"] -> geo.city/country
+        "StartDate": "01/"+str(aff["years"][-1]),
+        "EndDate": "01/"+str(aff["years"][0]),
+        "Location": "TBD", # could be queried from institution["id"] -> geo.city/country
         "Institute": aff["institution"]["display_name"]
     }
     Mobility.insert(0,position)
@@ -54,7 +54,7 @@ for work in works["results"]:
         "Type": "Paper", # TBD
         "Category": work["primary_location"]["raw_type"],
         "JCName": work["primary_location"]["raw_source_name"],
-        "Rating": "/", # TBD
+        "Rating": "A*", # TBD
         "Year": date.year,
         "Month": date.month,
         "Citation": work["cited_by_count"],
