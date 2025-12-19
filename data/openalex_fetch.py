@@ -51,7 +51,7 @@ for work in works["results"]:
     publication = {
         "Author": author["display_name"],
         "Title": work["title"],
-        "Type": "Paper", # TBD
+        "Type": "Paper", # TBD ("Paper" or anything else)
         "Category": work["primary_location"]["raw_type"],
         "JCName": work["primary_location"]["raw_source_name"],
         "Rating": "A*", # TBD

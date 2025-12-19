@@ -163,7 +163,7 @@ function createTooltip(x, y, obj){
   }
 
   text("Authors:", x+padding, y+padding+160, width-2*padding);
-  text(obj.Authors,x+padding, y+padding+166, width-2*padding, 24);
+  text(obj.Authors,x+padding, y+padding+170, width-2*padding, 24);
 
   // var person = obj.Author;
   // var authorList = obj.Authors;
