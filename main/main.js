@@ -9,6 +9,7 @@ var pubCircleList = new Array();
 var pubCircle_index = 0;
 var start_year = 2050;
 var end_year = 2000;
+var do_setup = true;
 
 function setup() {
   textFont('Times New Roman');
@@ -23,6 +24,7 @@ function draw() {
       vis(0, (i+1)*100, applicantData[i], pubArray[i]);
       mouseOver();
     }
+    if (do_setup) do_setup = false;
   }
 }
 
