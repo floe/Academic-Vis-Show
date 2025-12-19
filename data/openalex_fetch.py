@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys,requests,json
+from datetime import datetime
 
 if len(sys.argv) < 3:
     print("\nUsage: openalex_fetch.py <AUTHOR_ORCID> <SUPERVISOR_ORCID>\n")
@@ -45,6 +46,8 @@ for work in works["results"]:
         author_list = author_list+", "+str(coauthor["author"]["display_name"])
         position += 1
 
+    date = datetime.strptime(work["publication_date"],"%Y-%m-%d")
+
     publication = {
         "Author": author["display_name"],
         "Title": work["title"],
@@ -52,8 +55,8 @@ for work in works["results"]:
         "Category": work["primary_location"]["raw_type"],
         "JCName": work["primary_location"]["raw_source_name"],
         "Rating": "/", # TBD
-        "Year": work["publication_year"],
-        "Month": 1, # TBD
+        "Year": date.year,
+        "Month": date.month,
         "Citation": work["cited_by_count"],
         "WithAdvisor": with_advisor,
         "Star": "No", # TBD
@@ -72,4 +75,3 @@ result = {
 }
 
 print(json.dumps(result,indent=2))
-#"Mobility": [
