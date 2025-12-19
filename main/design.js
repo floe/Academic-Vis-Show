@@ -158,8 +158,13 @@ function gotData(data){
       var index_year;
       var index_month;
 
-      index_year = applicantData[i].Publication[j].Year - 2000; // reference year: 2000
+      index_year = applicantData[i].Publication[j].Year;
       index_month = applicantData[i].Publication[j].Month-1;
+
+      if (index_year < start_year) start_year = index_year;
+      if (index_year >   end_year)   end_year = index_year;
+
+      index_year -= 2000; // reference year: 2000
 
       pubArray[i][index_year][index_month].push(applicantData[i].Publication[j]);
       pubArray[i][index_year][index_month].sort(compare('Citation')); ////Sort by Citation
@@ -167,6 +172,10 @@ function gotData(data){
 
     vis_setup(0, (i+1)*100, applicantData[i], pubArray[i]);
   }
-  // lengendC(50, 100);
 
+  var width = (end_year - start_year) * 160;
+  var height = applicantData.length * 100 + 50;
+  //console.log(start_year, end_year, width, height);
+  var canvas = createCanvas(width, height);
+  canvas.parent('design');
 }

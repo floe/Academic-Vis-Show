@@ -7,15 +7,13 @@ var xStart = 180;
 var intersect = 150;
 var pubCircleList = new Array();
 var pubCircle_index = 0;
-
+var start_year = 2050;
+var end_year = 2000;
 
 function setup() {
-  var canvas = createCanvas(4000, 700); // FIXME
-  canvas.parent('design');
   textFont('Times New Roman');
   background(255);
   loadJSON("data/anonymousData2.json", gotData);
-
 }
 
 function draw() {
@@ -24,7 +22,6 @@ function draw() {
     for (var i = 0; i < applicantData.length; i++) {
       vis(0, (i+1)*100, applicantData[i], pubArray[i]);
       mouseOver();
-
     }
   }
 }
