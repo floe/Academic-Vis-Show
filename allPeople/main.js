@@ -14,7 +14,7 @@ function setup() {
   canvas.parent('design');
   textFont('Times New Roman');
   background(255);
-  loadJSON("../data/anonymousData2.json", gotData);
+  loadJSON("data/anonymousData2.json", gotData);
 
 }
 
