@@ -2,7 +2,7 @@
 var applicantData;
 var pubArray = new Array();
 var yPosition = 0;
-var axisWidth = 1300;
+var axisWidth = 4000; // FIXME
 var xStart = 180;
 var intersect = 150;
 var pubCircleList = new Array();
@@ -10,7 +10,7 @@ var pubCircle_index = 0;
 
 
 function setup() {
-  var canvas = createCanvas(1400, 700);
+  var canvas = createCanvas(4000, 700); // FIXME
   canvas.parent('design');
   textFont('Times New Roman');
   background(255);

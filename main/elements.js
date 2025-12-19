@@ -40,7 +40,7 @@ function axis(mobiObj, x, y){
     var endDate_month = moment(endDate, "MM/YYYY").get('month');
 
     //calculate the period start point and duration
-    var startLocation = x_ + xStart + (startDate_year-2012)*intersect + (startDate_month-1)*intersect/12;
+    var startLocation = x_ + xStart + (startDate_year-2000)*intersect + (startDate_month-1)*intersect/12; // FIXME
     var duration = (endDate_year - startDate_year)*intersect + (endDate_month - startDate_month)*intersect/12;
 
     var c;
@@ -68,7 +68,7 @@ function axis(mobiObj, x, y){
 
   //Draw Axis section and year
   fill(0);
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 25; i++) { // FIXME
     stroke(255);
     strokeWeight(1);
     line(x_+xStart+i*intersect, y_+yPosition, x_+xStart+i*intersect, y_+yPosition+4);
@@ -78,7 +78,7 @@ function axis(mobiObj, x, y){
     noStroke();
     textStyle(NORMAL);
     textSize(9);
-    text(2012+i, x_+xStart+intersect/2-10+i*intersect, y_+yPosition+30);
+    text(2000+i, x_+xStart+intersect/2-10+i*intersect, y_+yPosition+30);
 
     //draw the line
     stroke(200);

@@ -22,7 +22,6 @@ function vis(x, y, applicantInfo, publicationInfo){
   strokeWeight(1);
   axis(applicant.Mobility, x_, y_);
 
-
   //Draw the element
   rectMode(CENTER);
 
@@ -62,6 +61,10 @@ function vis(x, y, applicantInfo, publicationInfo){
           citationCircle(singlePubArray[y][m][i], xPos, yPos);
 
           let c=checkColor_independence(singlePubArray[y][m][i]);
+
+          // FIXME: run this once, not on every redraw
+          /*pubCircleList[pubCircle_index] = new PubCircle(singlePubArray[y][m][i], xPos, yPos, circleSize, c);
+          pubCircle_index++;*/
 
           if (singlePubArray[y][m][i].Type == "Paper") {
             pubCircle(singlePubArray[y][m][i], xPos, yPos, circleSize, c);
@@ -141,10 +144,10 @@ function gotData(data){
 
     //For each candidate:
     //(1)Create two-demension array to store publication information
-    pubArray[i] =  new Array(10);
+    pubArray[i] =  new Array(50); // 50 years FIXME
 
     for(var k = 0;k < pubArray[i].length; k++){
-      pubArray[i][k] = new Array(12);
+      pubArray[i][k] = new Array(12); // 12 months
       for (var l = 0; l < pubArray[i][k].length; l++) {
         pubArray[i][k][l] = new Array();
       }
@@ -155,7 +158,7 @@ function gotData(data){
       var index_year;
       var index_month;
 
-      index_year = applicantData[i].Publication[j].Year - 2012;
+      index_year = applicantData[i].Publication[j].Year - 2000; // reference year: 2000
       index_month = applicantData[i].Publication[j].Month-1;
 
       pubArray[i][index_year][index_month].push(applicantData[i].Publication[j]);
