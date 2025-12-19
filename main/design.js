@@ -169,11 +169,15 @@ function gotData(data){
       pubArray[i][index_year][index_month].push(applicantData[i].Publication[j]);
       pubArray[i][index_year][index_month].sort(compare('Citation')); ////Sort by Citation
     }
+  }
 
+  // remove empty year arrays at the start
+  for (var i = 0; i < applicantData.length; i++) {
+    pubArray[i].splice(0,start_year-2000);
     vis_setup(0, (i+1)*100, applicantData[i], pubArray[i]);
   }
 
-  var width = (end_year - start_year) * 160;
+  var width = (end_year - start_year + 1) * 160;
   var height = applicantData.length * 100 + 50;
   //console.log(start_year, end_year, width, height);
   var canvas = createCanvas(width, height);
