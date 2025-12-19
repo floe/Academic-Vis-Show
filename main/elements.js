@@ -44,7 +44,7 @@ function axis(mobiObj, x, y){
     if (  endDate_year <= start_year) continue;
 
     //calculate the period start point and duration
-    var startLocation = x_ + xStart + (startDate_year-start_year)*intersect + (startDate_month-1)*intersect/12; // FIXME
+    var startLocation = x_ + xStart + (startDate_year-start_year)*intersect + (startDate_month)*intersect/12;
     var duration = (endDate_year - startDate_year)*intersect + (endDate_month - startDate_month)*intersect/12;
 
     var c;

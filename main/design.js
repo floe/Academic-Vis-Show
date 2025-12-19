@@ -125,9 +125,9 @@ function gotData(data){
     pubArray[i].splice(0,start_year-2000);
   }
 
-  var width = (end_year - start_year + 1) * 160;
-  var height = applicantData.length * 100 + 50;
+  axisWidth = (end_year - start_year + 1) * intersect + xStart;
+  var height = (applicantData.length + 1) * rowHeight;
   //console.log(start_year, end_year, width, height);
-  var canvas = createCanvas(width, height);
+  var canvas = createCanvas(axisWidth, height);
   canvas.parent('design');
 }

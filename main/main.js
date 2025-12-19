@@ -2,9 +2,10 @@
 var applicantData;
 var pubArray = new Array();
 var yPosition = 0;
-var axisWidth = 4000; // FIXME
-var xStart = 180;
-var intersect = 150;
+var axisWidth = 4000;
+var xStart = 180; // start of the time axis
+var intersect = 150; // width of one year
+var rowHeight = 100; // height of one person
 var pubCircleList = new Array();
 var pubCircle_index = 0;
 var start_year = 2050;
@@ -21,7 +22,7 @@ function draw() {
   background(255);
   if (applicantData) {
     for (var i = 0; i < applicantData.length; i++) {
-      vis(0, (i+1)*100, applicantData[i], pubArray[i]);
+      vis(0, (i+1)*rowHeight, applicantData[i], pubArray[i]);
       mouseOver();
     }
     if (do_setup) do_setup = false;
