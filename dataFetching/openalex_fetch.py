@@ -6,10 +6,10 @@ if len(sys.argv) < 3:
     print("\nUsage: openalex_fetch.py <AUTHOR_ORCID> <SUPERVISOR_ORCID>\n")
     exit(1)
 
-author = sys.argv[1]
+author_orcid = sys.argv[1]
 supervisor = sys.argv[2]
 
-res = requests.get("https://api.openalex.org/authors/orcid:"+author)
+res = requests.get("https://api.openalex.org/authors/orcid:"+author_orcid)
 #print(res,res.text)
 author = res.json()
 
@@ -33,11 +33,17 @@ for work in works["results"]:
 
     with_advisor = "No"
     author_list = ""
+    position = 1
+    order = 1
 
     for coauthor in work["authorships"]:
-        if supervisor in str(coauthor["author"]["orcid"]):
+        orcid = str(coauthor["author"]["orcid"])
+        if supervisor in orcid:
             with_advisor = "Yes"
+        if author_orcid in orcid:
+            order = position
         author_list = author_list+", "+str(coauthor["author"]["display_name"])
+        position += 1
 
     publication = {
         "Author": author["display_name"],
@@ -51,15 +57,15 @@ for work in works["results"]:
         "Citation": work["cited_by_count"],
         "WithAdvisor": with_advisor,
         "Star": "No", # TBD
-        "Order": 2, # TBD
+        "Order": order,
         "AuthorCount": len(work["authorships"]),
-        "Authors": author_list
+        "Authors": author_list.strip(", ")
     }
     Works.insert(0,publication)
 
 result = {
     "Name": author["display_name"],
-    "Age": "30.0", # guess
+    "Age": "30.0", # TBD
     "Research": [ x["display_name"] for x in author["topics"] ],
     "Mobility": Mobility,
     "Publication": Works
