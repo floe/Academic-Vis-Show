@@ -23,14 +23,10 @@ function draw() {
   if (applicantData) {
     for (var i = 0; i < applicantData.length; i++) {
       vis(0, (i+1)*rowHeight, applicantData[i], pubArray[i]);
-      mouseOver();
     }
     if (do_setup) do_setup = false;
   }
-}
-
-function mouseOver() {
   for (var i = 0; i < pubCircleList.length; i++) {
-      pubCircleList[i].hover(mouseX, mouseY);
-    }
+    pubCircleList[i].hover(mouseX, mouseY);
   }
+}
