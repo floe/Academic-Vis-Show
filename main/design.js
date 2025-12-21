@@ -29,7 +29,7 @@ function vis(x, y, applicantInfo, publicationInfo){
   var xPos;
   var initialCircleSize = 8;
 
-  for (var y = 0; y < singlePubArray.length; y++) {
+  for (var y = start_year-2000; y < singlePubArray.length && y < (end_year-2000); y++) {
 
     for (var m = 0; m < singlePubArray[y].length; m++) {
 
@@ -55,7 +55,7 @@ function vis(x, y, applicantInfo, publicationInfo){
             circleSize = circleSize;
           }
 
-          var xPos = x_+xStart+m*intersect/12+intersect/24+y*intersect;
+          var xPos = x_+xStart+m*intersect/12+intersect/24+(y-(start_year-2000))*intersect;
           var yPos = y_+yPosition-12-((lastCircleSize+circleSize)/2+5)*i;
 
           citationCircle(singlePubArray[y][m][i], xPos, yPos);
@@ -114,15 +114,11 @@ function gotData(data){
       if (index_year >   end_year)   end_year = index_year;
 
       index_year -= 2000; // reference year: 2000
+      if (index_year < 0) continue;
 
       pubArray[i][index_year][index_month].push(applicantData[i].Publication[j]);
       pubArray[i][index_year][index_month].sort(compare('Citation')); ////Sort by Citation
     }
-  }
-
-  // remove empty year arrays at the start
-  for (var i = 0; i < applicantData.length; i++) {
-    pubArray[i].splice(0,start_year-2000);
   }
 
   axisWidth = (end_year - start_year + 1) * intersect + xStart;

@@ -37,6 +37,21 @@
         </div>
       </div>
 
+<div>
+  <input type="range" id="width" name="width" min="100" max="1000" value="150" onInput="intersect=this.value;"/>
+  <label for="width">Width</label>
+</div>
+
+<div>
+  <input type="range" id="start" name="start" min="2000" max="2050" value="2000" onInput="start_year=this.value;"/>
+  <label for="start">Start Year</label>
+</div>
+
+<div>
+  <input type="range" id="end" name="end" min="2000" max="2050" value="2000" onInput="end_year=this.value;"/>
+  <label for="end">Stop Year</label>
+</div>
+
       <div id="design"></div>
       <div class="legend">
         <object data="legend.svg" type="image/svg+xml" width="860"></object>

@@ -82,7 +82,7 @@ function axis(mobiObj, x, y){
     noStroke();
     textStyle(NORMAL);
     textSize(9);
-    text(start_year+i, x_+xStart+intersect/2-10+i*intersect, y_+yPosition+30);
+    text(int(start_year)+i, x_+xStart+intersect/2-10+i*intersect, y_+yPosition+30);
 
     //draw the line
     stroke(200);
