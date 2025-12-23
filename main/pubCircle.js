@@ -45,19 +45,11 @@ class PubCircle {
     let d = dist(x, y, this.xPos, this.yPos);
 
     if (d < this.circleSize*2) {
-      if (x<1000) {
-        if (y<400) {
-          createTooltip(this.xPos+10, this.yPos+10, this.obj);
-        } else {
-          createTooltip(this.xPos+10, this.yPos-10-200, this.obj);
-        }
-      } else {
-        if (y<400) {
-          createTooltip(this.xPos-10-300, this.yPos+10, this.obj);
-        } else {
-          createTooltip(this.xPos-10-300, this.yPos-10-200, this.obj);
-        }
-      }
+
+      var deltaX = (x < 1000) ? 10 : -310;
+      var deltaY = (y <  400) ? 10 : -210;
+
+      createTooltip(this.xPos+deltaX,this.yPos+deltaY,this.obj);
 
       let c = color('rgba(255, 220, 37, 0.9)');
       // stroke(c);
