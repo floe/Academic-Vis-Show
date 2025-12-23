@@ -33,6 +33,7 @@ class PubCircle {
       pubCircle(this.obj, this.xPos, this.yPos, circleSize, this.color);
     }else {
       noStroke();
+      fill(this.color);
       rect(this.xPos, this.yPos, circleSize*0.93, circleSize*0.93);
     }
 
@@ -43,7 +44,7 @@ class PubCircle {
     // translate(0, 100);
     let d = dist(x, y, this.xPos, this.yPos);
 
-    if (d < this.circleSize) {
+    if (d < this.circleSize*2) {
       if (x<1000) {
         if (y<400) {
           createTooltip(this.xPos+10, this.yPos+10, this.obj);
@@ -64,7 +65,7 @@ class PubCircle {
       noStroke();
       // strokeWeight(1);
       if (this.obj.Type == "Paper") {
-        ellipse(this.xPos, this.yPos, this.circleSize, this.circleSize);
+        ellipse(this.xPos, this.yPos, this.circleSize*2, this.circleSize*2);
       }else {
         rectMode(CENTER);
         rect(this.xPos, this.yPos, this.circleSize*0.93, this.circleSize*0.93);
