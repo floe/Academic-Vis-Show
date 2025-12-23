@@ -201,8 +201,8 @@ function boldName(person, authorList, xPos, yPos, width){
 //Function of Sorting
 function compare(property){
   return function(a,b){
-    var value1 = a[property];
-    var value2 = b[property];
+    var value1 = a.obj[property];
+    var value2 = b.obj[property];
     return value2 - value1;
   }
 }

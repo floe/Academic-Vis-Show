@@ -25,10 +25,6 @@ function vis(x, y, applicantInfo, publicationInfo){
   //Draw the element
   rectMode(CENTER);
 
-  var yPos;
-  var xPos;
-  var initialCircleSize = 8;
-
   for (var y = start_year-2000; y < singlePubArray.length && y < (end_year-2000); y++) {
 
     for (var m = 0; m < singlePubArray[y].length; m++) {
@@ -37,50 +33,13 @@ function vis(x, y, applicantInfo, publicationInfo){
 
       for (var i = 0; i < singlePubArray[y][m].length; i++) {
 
-        var circleSize = initialCircleSize;
+        var pub = singlePubArray[y][m][i];
 
-        rectMode(CENTER);
-        if (singlePubArray[y][m][i]) {
+        lastCircleSize = pub.display(x_,y_,i,lastCircleSize);
+        pub.hover(mouseX,mouseY);
 
-          //draw circlesize: Conference Level
-          if (singlePubArray[y][m][i].Rating == 'A*') {
-            circleSize = circleSize*2;
-          }else if (singlePubArray[y][m][i].Rating == 'A') {
-            circleSize = circleSize*1.7;
-          }else if (singlePubArray[y][m][i].Rating == 'B') {
-            circleSize = circleSize*1.3;
-          }else if (singlePubArray[y][m][i].Rating == 'C') {
-            circleSize = circleSize*1.1;
-          }else {
-            circleSize = circleSize;
-          }
-
-          var xPos = x_+xStart+m*intersect/12+intersect/24+(y-(start_year-2000))*intersect;
-          var yPos = y_+yPosition-12-((lastCircleSize+circleSize)/2+5)*i;
-
-          citationCircle(singlePubArray[y][m][i], xPos, yPos);
-
-          let c=checkColor_independence(singlePubArray[y][m][i]);
-
-          if (do_setup) {
-            pubCircleList[pubCircle_index] = new PubCircle(singlePubArray[y][m][i], xPos, yPos, circleSize, c);
-            pubCircle_index++;
-          }
-
-          if (singlePubArray[y][m][i].Type == "Paper") {
-            pubCircle(singlePubArray[y][m][i], xPos, yPos, circleSize, c);
-          }else {
-            noStroke();
-            rect(xPos, yPos, circleSize*0.93, circleSize*0.93);
-          }
-
-        }
-
-        lastCircleSize = circleSize;
       }
     }
-
-    strokeCap(SQUARE);
   }
 }
 
@@ -116,11 +75,12 @@ function gotData(data){
       index_year -= 2000; // reference year: 2000
       if (index_year < 0) continue;
 
-      pubArray[i][index_year][index_month].push(applicantData[i].Publication[j]);
+      pubArray[i][index_year][index_month].push(new PubCircle(applicantData[i].Publication[j]));
       pubArray[i][index_year][index_month].sort(compare('Citation')); ////Sort by Citation
     }
   }
 
+  // FIXME canvas needs to resize when start/end/intersect change
   axisWidth = (end_year - start_year + 1) * intersect + xStart;
   var height = (applicantData.length + 1) * rowHeight;
   //console.log(start_year, end_year, width, height);

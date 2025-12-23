@@ -1,20 +1,42 @@
 class PubCircle {
 
-  constructor(obj, xPos, yPos, circleSize, color){
+  constructor(obj){
     this.obj = obj;
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.circleSize = circleSize;
-    this.color = color;
+    this.circleSize = 8; // initial value
+    this.color = checkColor_independence(this.obj);
+    this.xPos = 0;
+    this.yPos = 0;
   }
 
-  display(){
+  display(x_,y_,i,lastCircleSize) {
+
+    rectMode(CENTER);
+    var circleSize = this.circleSize;
+
+    //draw circlesize: Conference Level
+    if (this.obj.Rating == 'A*') {
+      circleSize = circleSize*2;
+    }else if (this.obj.Rating == 'A') {
+      circleSize = circleSize*1.7;
+    }else if (this.obj.Rating == 'B') {
+      circleSize = circleSize*1.3;
+    }else if (this.obj.Rating == 'C') {
+      circleSize = circleSize*1.1;
+    }
+
+    this.xPos = x_ + xStart + (this.obj.Month-1)*intersect/12 + intersect/24 + (this.obj.Year-start_year)*intersect;
+    this.yPos = y_ + yPosition - 12-((lastCircleSize+circleSize)/2+5)*i;
+
+    citationCircle(this.obj, this.xPos, this.yPos);
+
     if (this.obj.Type == "Paper") {
       pubCircle(this.obj, this.xPos, this.yPos, this.circleSize, this.color);
     }else {
       noStroke();
       rect(this.xPos, this.yPos, this.circleSize*0.93, this.circleSize*0.93);
     }
+
+    return circleSize;
   }
 
   hover(x, y){
