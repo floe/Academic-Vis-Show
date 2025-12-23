@@ -30,10 +30,10 @@ class PubCircle {
     citationCircle(this.obj, this.xPos, this.yPos);
 
     if (this.obj.Type == "Paper") {
-      pubCircle(this.obj, this.xPos, this.yPos, this.circleSize, this.color);
+      pubCircle(this.obj, this.xPos, this.yPos, circleSize, this.color);
     }else {
       noStroke();
-      rect(this.xPos, this.yPos, this.circleSize*0.93, this.circleSize*0.93);
+      rect(this.xPos, this.yPos, circleSize*0.93, circleSize*0.93);
     }
 
     return circleSize;
