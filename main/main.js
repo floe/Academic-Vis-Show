@@ -23,5 +23,8 @@ function draw() {
     for (var i = 0; i < applicantData.length; i++) {
       vis(0, (i+1)*rowHeight, applicantData[i], pubArray[i]);
     }
+    for (var i = 0; i < applicantData.length; i++) {
+      pubIterate(pubArray[i],0,0,"pub.hover(mouseX,mouseY);");
+    }
   }
 }

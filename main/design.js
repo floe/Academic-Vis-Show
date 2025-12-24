@@ -1,7 +1,6 @@
 function vis(x, y, applicantInfo, publicationInfo){
 
   applicant = applicantInfo;
-  singlePubArray = publicationInfo;
 
   // translate(x, y);
   var x_= x;
@@ -25,19 +24,16 @@ function vis(x, y, applicantInfo, publicationInfo){
   //Draw the element
   rectMode(CENTER);
 
+  pubIterate(publicationInfo,x_,y_,"lastCircleSize = pub.display(x_,y_,i,lastCircleSize);");
+}
+
+function pubIterate(singlePubArray,x_,y_,inner) {
   for (var y = start_year-2000; y < singlePubArray.length && y < (end_year-2000); y++) {
-
     for (var m = 0; m < singlePubArray[y].length; m++) {
-
       var lastCircleSize = 15;
-
       for (var i = 0; i < singlePubArray[y][m].length; i++) {
-
         var pub = singlePubArray[y][m][i];
-
-        lastCircleSize = pub.display(x_,y_,i,lastCircleSize);
-        pub.hover(mouseX,mouseY);
-
+        eval(inner);
       }
     }
   }
