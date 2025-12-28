@@ -24,16 +24,16 @@ function vis(x, y, applicantInfo, publicationInfo){
   //Draw the element
   rectMode(CENTER);
 
-  pubIterate(publicationInfo,x_,y_,"lastCircleSize = pub.display(x_,y_,i,lastCircleSize);");
+  pubIterate(publicationInfo,(pub,i,lastCircleSize) => { return pub.display(x_,+y_,i,lastCircleSize); } );
 }
 
-function pubIterate(singlePubArray,x_,y_,inner) {
+function pubIterate(singlePubArray,inner) {
   for (var y = start_year-2000; y < singlePubArray.length && y < (end_year-2000); y++) {
     for (var m = 0; m < singlePubArray[y].length; m++) {
       var lastCircleSize = 15;
       for (var i = 0; i < singlePubArray[y][m].length; i++) {
         var pub = singlePubArray[y][m][i];
-        eval(inner);
+        lastCircleSize = inner(pub,i,lastCircleSize);
       }
     }
   }
