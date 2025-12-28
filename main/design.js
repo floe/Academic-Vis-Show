@@ -24,7 +24,7 @@ function vis(x, y, applicantInfo, publicationInfo){
   //Draw the element
   rectMode(CENTER);
 
-  pubIterate(publicationInfo,(pub,i,lastCircleSize) => { return pub.display(x_,+y_,i,lastCircleSize); } );
+  pubIterate(publicationInfo,(pub,i,lastCircleSize) => { return pub.display(x_,y_,i,lastCircleSize); } );
 }
 
 function pubIterate(singlePubArray,inner) {
